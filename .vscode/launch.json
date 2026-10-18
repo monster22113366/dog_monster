@@ -1,0 +1,39 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug with OpenOCD (DAPLink)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/build/dog_test.elf",
+            "servertype": "openocd",
+
+            // OpenOCD 的脚本搜索路径（按你的实际安装路径改）
+            "searchDir": [
+                "D:/APP/openocd/xpack-openocd-0.12.0-5-win32-x64/xpack-openocd-0.12.0-5/share/openocd/scripts"
+            ],
+            
+
+            // DAPLink 走 cmsis-dap 接口；target 换成你的芯片
+            "configFiles": [
+                "interface/cmsis-dap.cfg",
+                "target/stm32h7x.cfg"     // ← 改成你自己的芯片配置
+            ],
+
+            // arm-none-eabi-gdb 路径（不在 PATH 里时填写）
+            "armToolchainPath": "D:/APP/arm-gnu-toolchain-14.2.rel1-mingw-w64-i686-arm-none-eabi/bin",
+            "gdbPath": "arm-none-eabi-gdb",
+
+            "runToEntryPoint": "main",
+            "showDevDebugOutput": "none",
+
+            // 可选：SVDFile 用于外设寄存器视图
+            // "svdFile": "${workspaceFolder}/STM32F407.svd"
+            "liveWatch": {
+                "enabled": true,
+                "samplesPerSecond": 4
+            }
+        }
+    ]
+}

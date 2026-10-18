@@ -1,0 +1,11 @@
+CompileFlags:
+  CompilationDatabase: build
+  Remove: [-Werror]
+
+Diagnostics:
+  Suppress:
+    - unused-includes
+    - empty-translation-unit
+
+Index:
+  Background: Build

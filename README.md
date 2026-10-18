@@ -1,0 +1,19 @@
+1. 关键目录：USER_FILE，其它都是cubemx生成的脚手架
+2. USER_FILE分三层：bsp,component,app。
+    - bsp对接硬件
+    - component纯软件算法，与硬件无关。里面包括通信协议，pid，vmc等,供app调用
+    - app是应用层，大多数采用状态机。app会调用component层的算法，对接bsp的库函数
+3. app层的调用层次
+    - app_ctrl和app_scheduler是最上层的任务调度器，负责任务函数的调用
+    - 剩余app层主要由三类:腿，底盘，其它
+        - 腿：app_leg，app_motorSHS
+        - 底盘：app_chassis，app_motorQZB
+        - 其它：app_imu,app_log,app_rc
+4. 编译烧录
+    - 前置环境：cmake，ninja，arm-none-eabi-gcc,openocd
+    - 命令：见工程根目录下的cmd.txt，在终端对应目录运行即可
+5. 其它
+    - 如果想上电遥控器默认使能，修改App/app_rc.h的APP_RC_ENABLE_DEFAULT为1
+    - 想脱离腿直接调轮电机，修改App/app_chassis.h/APP_CHASSIS_IGNORE_LEGS宏为1
+6. 遥控器操作
+    - 详见USER_FILE\App\app_rc.h,有注释

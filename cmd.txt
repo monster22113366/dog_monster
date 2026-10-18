@@ -1,0 +1,13 @@
+//在build目录下进行编译:
+rm -rf *
+
+cmake -G Ninja -DCMAKE_TOOLCHAIN_FILE=cmake/gcc-arm-none-eabi.cmake ..
+
+ninja
+
+//工程主目录进行烧录(或者用ozone直接烧录)
+openocd -f ./openocd.cfg
+
+//开启g_log.start记录调试数据后，用py脚本进行分析
+用法(在 dog_matlabsim 目录下):
+python tools/log_dump.py a

@@ -1,0 +1,10 @@
+build/
+.spec-workflow/
+.auto-embedded/
+.claude/
+.cache/
+/next.txt
+test/
+# 主机回归测试源码纳入审阅；编译产物仍放 build/。
+
+
